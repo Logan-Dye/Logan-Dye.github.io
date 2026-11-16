@@ -19,7 +19,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Spectral:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -91,6 +91,8 @@
       list-style: none;
     }
 
+    .nav-links[hidden] { display: none; }
+
     .nav-links a {
       font-size: 0.85rem;
       color: var(--text-dim);
@@ -103,6 +105,9 @@
       padding: 5rem 0 4rem;
       border-bottom: 1px solid var(--border);
     }
+
+    .cv-mode .hero { padding: 2.5rem 0 2rem; }
+    .cv-mode .hero-desc { display: none; }
 
     .hero-tag {
       font-family: 'IBM Plex Mono', monospace;
@@ -370,6 +375,32 @@
     .exp-desc ul + p { margin-top: 0.8rem; }
     .exp-desc li + li { margin-top: 0.25rem; }
 
+    .cv-story {
+      max-width: 46rem;
+      padding-block: 3rem 4.5rem;
+      font-family: 'Spectral', Georgia, serif;
+      font-size: clamp(1.07rem, 2.4vw, 1.19rem);
+      line-height: 1.65;
+    }
+
+    .cv-story h2 {
+      margin-bottom: 1.25rem;
+      color: var(--text-bright);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.1;
+    }
+
+    .cv-story p + p { margin-top: 1.05em; }
+    .cv-story p:first-of-type { color: var(--text-bright); }
+
+    .cv-story a {
+      color: var(--text-bright);
+      text-decoration: underline;
+      text-decoration-color: var(--accent);
+      text-underline-offset: 0.17em;
+    }
+
     .contact-links {
       display: flex;
       flex-direction: column;
@@ -446,12 +477,19 @@
   <nav>
     <div class="container">
       <span class="nav-name">Logan Dye</span>
-      <ul class="nav-links">
+      <ul class="nav-links" id="resumeNav">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#titles">Titles</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#contact">Contact</a></li>
+      </ul>
+      <ul class="nav-links" id="cvNav" hidden>
+        <li><a href="#cv-about">Profile</a></li>
+        <li><a href="#cv-orbital">Orbital XR</a></li>
+        <li><a href="#cv-combat-waffle">Combat Waffle</a></li>
+        <li><a href="#cv-designful">Designful</a></li>
+        <li><a href="#cv-contact">Contact</a></li>
       </ul>
       <button class="theme-toggle" id="themeToggle">Light</button>
     </div>
@@ -474,7 +512,7 @@
       </div>
       <label class="view-selector" hidden>
         Portfolio view
-        <select id="portfolioView" aria-controls="experience" autocomplete="off">
+        <select id="portfolioView" aria-controls="resumeView cvView" autocomplete="off">
           <option value="resume">Resume</option>
           <option value="cv">CV</option>
         </select>
@@ -482,230 +520,260 @@
     </div>
   </div>
 
-  <div class="section" id="about">
-    <div class="container">
-      <p class="section-label">01</p>
-      <h2 class="section-title">About</h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I'm an Unreal Engine developer with 8 years of experience, progressing from self-directed study through contract work to professional studio development. At Designful, I lead technical development and networking for OP4, building Unreal Engine gameplay systems and C# backend services.</p>
-          <p>I have a strong preference for building systems from the ground up when existing solutions don't fit the problem, which means I understand how things work at a deep level, not just how to configure a plugin.</p>
-          <p>Currently seeking remote senior or lead Unreal Engine roles where I can contribute to complex, systems-heavy projects.</p>
-        </div>
-        <div>
-          <div class="meta-row">
-            <span class="meta-label">Location</span>
-            <span class="meta-value">Remote</span>
+  <main id="resumeView">
+    <div class="section" id="about">
+      <div class="container">
+        <p class="section-label">01</p>
+        <h2 class="section-title">About</h2>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I'm an Unreal Engine developer with 8 years of experience, progressing from self-directed study through contract work to professional studio development. At Designful, I lead technical development and networking for OP4, building Unreal Engine gameplay systems and C# backend services.</p>
+            <p>I have a strong preference for building systems from the ground up when existing solutions don't fit the problem, which means I understand how things work at a deep level, not just how to configure a plugin.</p>
+            <p>Currently seeking remote senior or lead Unreal Engine roles where I can contribute to complex, systems-heavy projects.</p>
           </div>
-          <div class="meta-row">
-            <span class="meta-label">Experience</span>
-            <span class="meta-value">8 Years</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-label">Engine</span>
-            <span class="meta-value">Unreal Engine 4 / 5</span>
-          </div>
-          <div class="meta-row">
-            <span class="meta-label">Status</span>
-            <span class="meta-value">Open to work</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="skills">
-    <div class="container">
-      <p class="section-label">02</p>
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-list">
-        <div class="skill-row">
-          <span class="skill-cat">Engine & Languages</span>
-          <div class="skill-tags">
-            <span class="tag">Unreal Engine 4</span>
-            <span class="tag">Unreal Engine 5</span>
-            <span class="tag">C++</span>
-            <span class="tag">Blueprints</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Multiplayer & Networking</span>
-          <div class="skill-tags">
-            <span class="tag">Replication Architecture</span>
-            <span class="tag">Client-Server Systems</span>
-            <span class="tag">Custom Netcode</span>
-            <span class="tag">Gameplay State Sync</span>
-            <span class="tag">Steam Integration</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Systems & Architecture</span>
-          <div class="skill-tags">
-            <span class="tag">Data-Oriented Design</span>
-            <span class="tag">Gameplay Tag Systems</span>
-            <span class="tag">Custom Movement</span>
-            <span class="tag">VR Development</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">AI &amp; NPC Systems</span>
-          <div class="skill-tags">
-            <span class="tag">NPC Behavior</span>
-            <span class="tag">Behavior Trees</span>
-            <span class="tag">AI Perception</span>
-            <span class="tag">Navigation</span>
-            <span class="tag">Pathfinding</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Physics &amp; Ballistics</span>
-          <div class="skill-tags">
-            <span class="tag">Real-Time Physics</span>
-            <span class="tag">Real-Time Ballistics</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Backend & Tooling</span>
-          <div class="skill-tags">
-            <span class="tag">C# Backends</span>
-            <span class="tag">REST APIs</span>
-            <span class="tag">Jenkins / CI-CD</span>
-            <span class="tag">SteamCMD</span>
-            <span class="tag">Linux Server Admin</span>
-            <span class="tag">Third-Party SDK Integration</span>
-          </div>
-        </div>
-        <div class="skill-row">
-          <span class="skill-cat">Lighting & Environment</span>
-          <div class="skill-tags">
-            <span class="tag">Static Lighting</span>
-            <span class="tag">Dynamic Lighting</span>
-            <span class="tag">Environment Design</span>
-            <span class="tag">Materials & Shaders</span>
-            <span class="tag">Performance Optimization</span>
-            <span class="tag">Level Optimization</span>
+          <div>
+            <div class="meta-row">
+              <span class="meta-label">Location</span>
+              <span class="meta-value">Remote</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Experience</span>
+              <span class="meta-value">8 Years</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Engine</span>
+              <span class="meta-value">Unreal Engine 4 / 5</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Status</span>
+              <span class="meta-value">Open to work</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="section" id="titles">
-    <div class="container">
-      <p class="section-label">03</p>
-      <h2 class="section-title">Shipped Titles</h2>
-      <div class="title-card">
-        <div class="title-top">
-          <span class="title-name">Ghosts of Tabor</span>
-          <span class="title-badge">Shipped</span>
-        </div>
-        <p class="title-meta">VR · Multiplayer Survival · Combat Waffle Studios</p>
-        <p class="title-desc">A hardcore VR survival extraction game with full multiplayer support. Contributed core systems including multiplayer architecture, replication, gameplay systems, and engine-level tooling.</p>
-      </div>
-      <div class="title-card">
-        <div class="title-top">
-          <span class="title-name">Silent North VR</span>
-          <span class="title-badge">Shipped</span>
-        </div>
-        <p class="title-meta">VR · Multiplayer Survival · Combat Waffle Studios</p>
-        <p class="title-desc">Built the world loot, zombie AI pooling, player movement, base ownership, and survival systems for a multiplayer VR survival game.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section" id="experience">
-    <div class="container">
-      <p class="section-label">04</p>
-      <h2 class="section-title">Experience</h2>
-
-      <div class="exp-item">
-        <div class="exp-period">April 2026 - Present</div>
-        <div>
-          <div class="exp-role">Technical Project Lead + Technical Networking Lead</div>
-          <div class="exp-company">Designful</div>
-          <p class="exp-desc" data-view="resume">Lead technical development and networking for OP4. Built its Unreal Engine server and C# backend architecture, custom client prediction, networked ballistics, and military squad AI. Develop real-time ballistics and armor simulation.</p>
-          <div class="exp-desc" data-view="cv" hidden>
-            <p><strong>OP4 Networking and Backend</strong></p>
-            <ul>
-              <li>Designed the network architecture connecting Unreal Engine game servers to a C# backend and built the backend, matchmaker, Steam and custom email authentication, and persistent storage outside Unreal.</li>
-              <li>Implemented linear and custom XP progression, real-money purchasing, and Tarkov-style modular class and weapon building.</li>
-              <li>Built custom client-predicted networking and a networked physics system for ballistic simulation.</li>
-            </ul>
-            <p><strong>OP4 Gameplay Systems</strong></p>
-            <ul>
-              <li>Develop real-time ballistics and armor simulation. Built the game's loot system.</li>
-              <li>Created real-time military squad AI that mimics player behavior, including flanking, stalking, looting bodies, and trading recovered gear.</li>
-            </ul>
+    <div class="section" id="skills">
+      <div class="container">
+        <p class="section-label">02</p>
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-list">
+          <div class="skill-row">
+            <span class="skill-cat">Engine & Languages</span>
+            <div class="skill-tags">
+              <span class="tag">Unreal Engine 4</span>
+              <span class="tag">Unreal Engine 5</span>
+              <span class="tag">C++</span>
+              <span class="tag">Blueprints</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Multiplayer & Networking</span>
+            <div class="skill-tags">
+              <span class="tag">Replication Architecture</span>
+              <span class="tag">Client-Server Systems</span>
+              <span class="tag">Custom Netcode</span>
+              <span class="tag">Gameplay State Sync</span>
+              <span class="tag">Steam Integration</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Systems & Architecture</span>
+            <div class="skill-tags">
+              <span class="tag">Data-Oriented Design</span>
+              <span class="tag">Gameplay Tag Systems</span>
+              <span class="tag">Custom Movement</span>
+              <span class="tag">VR Development</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">AI &amp; NPC Systems</span>
+            <div class="skill-tags">
+              <span class="tag">NPC Behavior</span>
+              <span class="tag">Behavior Trees</span>
+              <span class="tag">AI Perception</span>
+              <span class="tag">Navigation</span>
+              <span class="tag">Pathfinding</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Physics &amp; Ballistics</span>
+            <div class="skill-tags">
+              <span class="tag">Real-Time Physics</span>
+              <span class="tag">Real-Time Ballistics</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Backend & Tooling</span>
+            <div class="skill-tags">
+              <span class="tag">C# Backends</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">Jenkins / CI-CD</span>
+              <span class="tag">SteamCMD</span>
+              <span class="tag">Linux Server Admin</span>
+              <span class="tag">Third-Party SDK Integration</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <span class="skill-cat">Lighting & Environment</span>
+            <div class="skill-tags">
+              <span class="tag">Static Lighting</span>
+              <span class="tag">Dynamic Lighting</span>
+              <span class="tag">Environment Design</span>
+              <span class="tag">Materials & Shaders</span>
+              <span class="tag">Performance Optimization</span>
+              <span class="tag">Level Optimization</span>
+            </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="exp-item">
-        <div class="exp-period">March 2023 - April 2026</div>
-        <div>
-          <div class="exp-role">Lead Developer (Silent North and Ghosts of Tabor)</div>
-          <div class="exp-company">Combat Waffle Studios</div>
-          <p class="exp-desc" data-view="resume">Built SQL-backed world loot for 1,000+ locations and an AI pool that preloaded 1,000 zombies for Silent North VR. Led the Ghosts of Tabor bunker overhaul and built core gameplay and inventory systems.</p>
-          <div class="exp-desc" data-view="cv" hidden>
-            <p><strong>Silent North VR</strong></p>
-            <ul>
-              <li>Built a SQL-backed world loot system that automatically generated loot across 1,000+ locations on a 37 km map and responded to player events.</li>
-              <li>Built an area-based AI pool that preloaded 1,000 zombies and placed them dynamically in and around cities and near players, with minimal observed server and client performance impact.</li>
-              <li>Implemented custom client-authoritative player movement. Built base construction and ownership systems that linked players and their storage to claimable world locations.</li>
-              <li>Developed the survival system on a custom fork of Unreal Engine's Gameplay Ability System (GAS), including elevation-based freezing.</li>
-            </ul>
-            <p><strong>Ghosts of Tabor</strong></p>
-            <ul>
-              <li>Led the full bunker overhaul and personally built core systems. Worked with the backend lead on client-side storage, clothing selection, DLC retrieval, and kiosk delivery for loose gear.</li>
-              <li>The overhaul added bunker power, GPU mining for in-game currency, medical supply crafting, and farming with planting and harvesting.</li>
-            </ul>
-            <p>Also contributed engine tooling and build pipeline infrastructure at Combat Waffle Studios.</p>
+    <div class="section" id="titles">
+      <div class="container">
+        <p class="section-label">03</p>
+        <h2 class="section-title">Shipped Titles</h2>
+        <div class="title-card">
+          <div class="title-top">
+            <span class="title-name">Ghosts of Tabor</span>
+            <span class="title-badge">Shipped</span>
+          </div>
+          <p class="title-meta">VR · Multiplayer Survival · Combat Waffle Studios</p>
+          <p class="title-desc">A hardcore VR survival extraction game with full multiplayer support. Contributed core systems including multiplayer architecture, replication, gameplay systems, and engine-level tooling.</p>
+        </div>
+        <div class="title-card">
+          <div class="title-top">
+            <span class="title-name">Silent North VR</span>
+            <span class="title-badge">Shipped</span>
+          </div>
+          <p class="title-meta">VR · Multiplayer Survival · Combat Waffle Studios</p>
+          <p class="title-desc">Built the world loot, zombie AI pooling, player movement, base ownership, and survival systems for a multiplayer VR survival game.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="experience">
+      <div class="container">
+        <p class="section-label">04</p>
+        <h2 class="section-title">Experience</h2>
+
+        <div class="exp-item">
+          <div class="exp-period">April 2026 - Present</div>
+          <div>
+            <div class="exp-role">Technical Project Lead + Technical Networking Lead</div>
+            <div class="exp-company">Designful</div>
+            <div class="exp-desc">
+              <p><strong>OP4 Networking and Backend</strong></p>
+              <ul>
+                <li>Designed the network architecture connecting Unreal Engine game servers to a C# backend and built the backend, matchmaker, Steam and custom email authentication, and persistent storage outside Unreal.</li>
+                <li>Implemented linear and custom XP progression, real-money purchasing, and Tarkov-style modular class and weapon building.</li>
+                <li>Built custom client-predicted networking and a networked physics system for ballistic simulation.</li>
+              </ul>
+              <p><strong>OP4 Gameplay Systems</strong></p>
+              <ul>
+                <li>Develop real-time ballistics and armor simulation. Built the game's loot system.</li>
+                <li>Created real-time military squad AI that mimics player behavior, including flanking, stalking, looting bodies, and trading recovered gear.</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="exp-item">
-        <div class="exp-period">2021 - 2023</div>
-        <div>
-          <div class="exp-role">Technical Programmer</div>
-          <div class="exp-company">Orbital XR - Startup</div>
-          <p class="exp-desc" data-view="resume">Built core Unreal Engine VR, Steam networking, vehicle, and AI systems for a multiplayer VR social platform.</p>
-          <p class="exp-desc" data-view="cv" hidden>Led the technical design and implementation of core systems for a multiplayer VR social platform in Unreal Engine. Built the core VR systems and integrated Steam networking, developed vehicle systems and AI for traffic and pedestrians, and implemented in-world ad placements and the systems for purchasing ad space.</p>
+        <div class="exp-item">
+          <div class="exp-period">March 2023 - April 2026</div>
+          <div>
+            <div class="exp-role">Lead Developer (Silent North and Ghosts of Tabor)</div>
+            <div class="exp-company">Combat Waffle Studios</div>
+            <div class="exp-desc">
+              <p><strong>Silent North VR</strong></p>
+              <ul>
+                <li>Built a SQL-backed world loot system that automatically generated loot across 1,000+ locations on a 37 km map and responded to player events.</li>
+                <li>Built an area-based AI pool that preloaded 1,000 zombies and placed them dynamically in and around cities and near players, with minimal observed server and client performance impact.</li>
+                <li>Implemented custom client-authoritative player movement. Built base construction and ownership systems that linked players and their storage to claimable world locations.</li>
+                <li>Developed the survival system on a custom fork of Unreal Engine's Gameplay Ability System (GAS), including elevation-based freezing.</li>
+              </ul>
+              <p><strong>Ghosts of Tabor</strong></p>
+              <ul>
+                <li>Led the full bunker overhaul and personally built core systems. Worked with the backend lead on client-side storage, clothing selection, DLC retrieval, and kiosk delivery for loose gear.</li>
+                <li>The overhaul added bunker power, GPU mining for in-game currency, medical supply crafting, and farming with planting and harvesting.</li>
+              </ul>
+              <p>Also contributed engine tooling and build pipeline infrastructure at Combat Waffle Studios.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">Feb 2021 - Feb 2023</div>
+          <div>
+            <div class="exp-role">Technical Programmer</div>
+            <div class="exp-company">Orbital XR - Startup</div>
+            <div class="exp-desc">
+              <ul>
+                <li>Led technical design and built core VR systems and Steam networking for a multiplayer social platform in Unreal Engine.</li>
+                <li>Developed vehicle systems and AI for traffic and pedestrians.</li>
+                <li>Implemented in-world ad placements and the systems for purchasing ad space.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-period">2017 - 2021</div>
+          <div>
+            <div class="exp-role">Mentorship & Personal Projects</div>
+            <div class="exp-company">Private Mentorship - Game Development</div>
+            <div class="exp-desc">Trained under a private mentor holding a Master's in Game Development. Focused on Unreal Engine, C++, game systems architecture, and multiplayer. Built personal projects to develop a deep understanding of engine internals and networked gameplay.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="container">
+        <p class="section-label">05</p>
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-links">
+          <a href="mailto:dye.logan@pm.me" class="contact-link">
+            <span class="contact-type">Email</span>
+            <span class="contact-val">dye.logan@pm.me</span>
+          </a>
+          <a href="https://linkedin.com/in/dye-logan" target="_blank" class="contact-link">
+            <span class="contact-type">LinkedIn</span>
+            <span class="contact-val">linkedin.com/in/dye-logan</span>
+          </a>
+          <a href="https://github.com/0rb1tall" target="_blank" class="contact-link">
+            <span class="contact-type">GitHub</span>
+            <span class="contact-val">github.com/0rb1tall</span>
+          </a>
         </div>
       </div>
-
-      <div class="exp-item">
-        <div class="exp-period">2017 - 2021</div>
-        <div>
-          <div class="exp-role">Mentorship & Personal Projects</div>
-          <div class="exp-company">Private Mentorship - Game Development</div>
-          <div class="exp-desc">Trained under a private mentor holding a Master's in Game Development. Focused on Unreal Engine, C++, game systems architecture, and multiplayer. Built personal projects to develop a deep understanding of engine internals and networked gameplay.</div>
-        </div>
-      </div>
-
     </div>
-  </div>
+  </main>
 
-  <div class="section" id="contact">
-    <div class="container">
-      <p class="section-label">05</p>
-      <h2 class="section-title">Contact</h2>
-      <div class="contact-links">
-        <a href="mailto:dye.logan@pm.me" class="contact-link">
-          <span class="contact-type">Email</span>
-          <span class="contact-val">dye.logan@pm.me</span>
-        </a>
-        <a href="https://linkedin.com/in/dye-logan" target="_blank" class="contact-link">
-          <span class="contact-type">LinkedIn</span>
-          <span class="contact-val">linkedin.com/in/dye-logan</span>
-        </a>
-        <a href="https://github.com/0rb1tall" target="_blank" class="contact-link">
-          <span class="contact-type">GitHub</span>
-          <span class="contact-val">github.com/0rb1tall</span>
-        </a>
-      </div>
-    </div>
-  </div>
+  <main id="cvView" hidden>
+    <article class="container cv-story" aria-labelledby="cv-about">
+      <h2 id="cv-about">Curriculum Vitae</h2>
+      <p>I build multiplayer games in Unreal Engine, with C++ for gameplay and C# for the services behind it. My work has taken me from multiplayer VR platforms to two shipped VR survival titles and into the networking, AI, and physics that drive OP4.</p>
+
+      <p>From 2017 to 2021, I studied Unreal Engine, C++, systems architecture, and multiplayer under a private game development mentor. I used personal projects to learn how the engine handles gameplay and how game state moves across a network.</p>
+
+      <p id="cv-orbital">From February 2021 to February 2023, I worked as a Technical Programmer at Orbital XR, a startup building a multiplayer VR social platform. I led the technical design and built its core VR systems and Steam networking. I also built vehicle systems, AI for traffic and pedestrians, and the in-world systems for placing and purchasing ad space.</p>
+
+      <p id="cv-combat-waffle">I joined Combat Waffle Studios in March 2023 and worked there through April 2026 as Lead Developer on <em>Silent North VR</em> and <em>Ghosts of Tabor</em>. Both titles shipped. On <em>Silent North VR</em>, I built a SQL-backed world loot system for a 37 km map that automatically generated loot across more than 1,000 locations and responded to player events. I also built an area-based AI pool that preloaded 1,000 zombies and placed them around cities and near players with minimal observed impact on server and client performance.</p>
+
+      <p>I built custom client-authoritative movement and a base building and ownership system that linked players and their storage to claimable locations. I also developed the survival system on a custom fork of Unreal Engine's Gameplay Ability System, including elevation-based freezing.</p>
+
+      <p>On <em>Ghosts of Tabor</em>, I led the bunker overhaul and built core parts of it. I worked with the backend lead on client-side storage, clothing selection, DLC retrieval, and kiosk delivery for loose gear. The overhaul added bunker power, GPU mining for in-game currency, medical supply crafting, and farming with planting and harvesting. I also contributed engine tooling and build pipeline infrastructure at Combat Waffle.</p>
+
+      <p id="cv-designful">In April 2026, I joined Designful as Technical Project Lead and Technical Networking Lead for OP4. I designed the network architecture between Unreal Engine game servers and the C# backend and built the backend, matchmaker, Steam and custom email authentication, and persistent storage outside Unreal. I also implemented linear and custom XP progression, real-money purchasing, and Tarkov-style modular class and weapon building.</p>
+
+      <p>I develop the real-time ballistics and armor simulation for OP4, and I built its client-predicted networking and networked physics for ballistics. I also built the loot system and military squad AI that mimics players by flanking, stalking, looting bodies, and trading recovered gear.</p>
+
+      <p>Across those projects, I've used Unreal Engine 4 and 5, pairing C++ with Blueprints. My NPC work spans behavior trees, perception, navigation, and pathfinding. My backend and tooling work includes SQL, REST APIs, Linux servers, and Jenkins CI/CD.</p>
+
+      <p id="cv-contact">I'm open to remote senior and lead Unreal Engine roles. You can reach me at <a href="mailto:dye.logan@pm.me">dye.logan@pm.me</a> or find me on <a href="https://linkedin.com/in/dye-logan">LinkedIn</a> and <a href="https://github.com/0rb1tall">GitHub</a>.</p>
+    </article>
+  </main>
 
   <footer>
     <div class="container">
@@ -722,15 +790,30 @@
     });
 
     const portfolioView = document.getElementById('portfolioView');
-    const experienceViews = document.querySelectorAll('#experience [data-view]');
+    const resumeView = document.getElementById('resumeView');
+    const cvView = document.getElementById('cvView');
+    const resumeNav = document.getElementById('resumeNav');
+    const cvNav = document.getElementById('cvNav');
 
     function updatePortfolioView() {
-      experienceViews.forEach((entry) => {
-        entry.hidden = entry.dataset.view !== portfolioView.value;
-      });
+      const target = document.getElementById(location.hash.slice(1));
+      const showCv = location.hash === '#cv' || cvView.contains(target);
+      portfolioView.value = showCv ? 'cv' : 'resume';
+      resumeView.hidden = showCv;
+      cvView.hidden = !showCv;
+      resumeNav.hidden = showCv;
+      cvNav.hidden = !showCv;
+      document.body.classList.toggle('cv-mode', showCv);
     }
 
-    portfolioView.addEventListener('change', updatePortfolioView);
+    portfolioView.addEventListener('change', () => {
+      const url = new URL(location.href);
+      url.hash = portfolioView.value === 'cv' ? 'cv' : '';
+      history.replaceState(null, '', url);
+      updatePortfolioView();
+    });
+
+    window.addEventListener('hashchange', updatePortfolioView);
     updatePortfolioView();
     portfolioView.closest('label').hidden = false;
   </script>
